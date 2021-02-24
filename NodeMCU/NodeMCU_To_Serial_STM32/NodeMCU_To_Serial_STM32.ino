@@ -1,4 +1,3 @@
-//#define BLYNK_PRINT Serial
 #include <ESP8266WiFi.h>
 #include <SoftwareSerial.h>
 #include <SimpleTimer.h>
@@ -18,7 +17,7 @@ int firstVal, secondVal,thirdVal; // sensors
  
 void setup()
 {
-  // Debug console
+  // Memulai komunikasi serial
   Serial.begin(115200);
  
 }
