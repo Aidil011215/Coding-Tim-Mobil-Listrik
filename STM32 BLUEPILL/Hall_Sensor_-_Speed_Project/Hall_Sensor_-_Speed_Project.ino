@@ -13,7 +13,7 @@ float Kilometer1 = 0;
 
 void isr()          //interrupt service routine
 {
-rev++; //Penambahan nilai variabel setiap intrupsi
+rev++; //Penambahan nilai variabel setiap interupsi
 
 }
 void isr1()          //interrupt service routine
@@ -26,8 +26,8 @@ void setup()
 //pinMode(PA11 ,INPUT);// Mendeklarasikan PIN PA11 pada kondidi HIGH
 pinMode(PA7, INPUT);
 pinMode(PA6, INPUT);
-attachInterrupt(digitalPinToInterrupt(PA7),isr,RISING);  //Memasang intrupsi
-attachInterrupt(digitalPinToInterrupt(PA6),isr1,RISING);  //Memasang intrupsi
+attachInterrupt(digitalPinToInterrupt(PA7),isr,RISING);  //Memasang interupsi
+attachInterrupt(digitalPinToInterrupt(PA6),isr1,RISING);  //Memasang interupsi
 Serial.begin(9600); //Untuk menampilkan diserial monitor
 
 }
@@ -35,7 +35,7 @@ Serial.begin(9600); //Untuk menampilkan diserial monitor
 void loop()
 {
 delay(2000);// Penundaan 2 detik
-detachInterrupt(digitalPinToInterrupt(PA7)); //Data menghitung ulang intrupsi
+detachInterrupt(digitalPinToInterrupt(PA7)); //Data menghitung ulang interupsi
 
 time=millis() - oldtime; //waktu sekarang dikurang waktu sebelumnya
 rpm = (rev/time)*60000; //menghitung semua
