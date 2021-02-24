@@ -7,7 +7,7 @@
 SimpleTimer timer;
  
 String myString; // complete message from arduino, which consistors of snesors data
-char rdata; // received charactors
+char rdata; // menerima karakter
  
 int firstVal, secondVal,thirdVal; // sensors 
 // This function sends Arduino's up time every second to Virtual Pin (1).
