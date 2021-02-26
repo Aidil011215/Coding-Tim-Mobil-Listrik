@@ -1,8 +1,7 @@
-//NodMCU -->data --> SD Card
-// sumber referensi
-// https://www.instructables.com/SD-Card-Module-With-ESP8266/
+//NodeMCU --> data --> SD Card
+// sumber referensi https://www.instructables.com/SD-Card-Module-With-ESP8266/
 
-#include <SD.h>    //Mrndenefisikan library atau perpustakaan SD.h
+#include <SD.h>    //Mendenefisikan library atau perpustakaan SD.h
 #define CS_PIN  D8 //Medenefisikan variabel CS_PIN pada pin D8 di STM32
 #define pot A0     // Mendenefisikan variabel pot pada pin A0 di STM32
 
@@ -41,9 +40,9 @@ void loop() {
   if (dataFile) {
     Serial.println("File Nilaipot.xls Berhasil Dibuka."); //Menampilkan diserial kata "File Nilaipot.xls Berhasil Dibuka." di serial monitor laptop
       
-      dataFile.print("Nilai Pot"); //Mecetak kata pada file yang dibuat di SD card
+      dataFile.print("Nilai Pot"); //Mecetak kata "Nilai Pot" pada file yang dibuat di SD card
       dataFile.print("\t\t"); //Tab 2 kali
-      dataFile.println("Nilai Pot*2"); //Mecetak kata pada file yang dibuat di SD card
+      dataFile.println("Nilai Pot*2"); //Mecetak kata "Nilai Pot*2" pada file yang dibuat di SD card
       dataFile.print("");
       dataFile.print(b); //Mecetak nilai dari variabel b pada file yang dibuat di SD card
       dataFile.print("\t\t"); //Tab 2 kali
