@@ -26,10 +26,12 @@ void setup() {
 void loop() {
   if (Serial.available()){
 
-    nPWM = Serial.parseInt();
-       Serial.print("Nilai Frekuensi PWM = ");
-       Serial.print(nPWM);
-       Serial.println(" Hz");
+       nPWM = Serial.parseInt();
+         Serial.print("Nilai Frekuensi PWM = ");
+         Serial.print(nPWM);
+         Serial.println(" Hz");
     
     pwmWrite(PA0, nPWM);
   }
+
+  //https://forum.arduino.cc/index.php?topic=706130.0
