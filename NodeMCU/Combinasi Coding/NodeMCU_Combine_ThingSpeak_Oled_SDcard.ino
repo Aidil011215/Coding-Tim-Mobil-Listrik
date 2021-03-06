@@ -4,13 +4,13 @@
 #include <SD.h>
 #include <ThingSpeak.h>
 #include <ESP8266WiFi.h>
-//#include <WiFi.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h> 
 
 //Deklarasi untuk pin LCD Oled
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
 #define SCREEN_HEIGHT 64 // OLED display height, in pixels
+
 // Declaration for an SSD1306 display connected to I2C (SDA, SCL pins)
 #define OLED_RESET     -1 // Reset pin # (or -1 if sharing Arduino reset pin)
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
@@ -21,11 +21,8 @@ float V, I, P, T, v, E;
 float a, b, c, x, y, z;
 
 // Hostpot
-const char *ssid =  "Redmi Not 8";
-const char *pass =  "1indakaku";
-
-//const char* http_username = "admin";
-//const char* http_password = "admin";
+const char *ssid =  "Nama Wifi";
+const char *pass =  "Password";
 
 WiFiClient client;
 
@@ -35,7 +32,7 @@ const char *apiKey = "YPYIRSVFF8YQRLET"; //your channel write API Key
 
 //Deklarasi untuk pin pada SD Card
 const int CS_PIN = D8; //Medenefisikan variabel CS_PIN pada pin D8 di NodeMCU
-//File dataFile; //Mendeklarasikan variabel dataFile pada tipe File atau dokumen
+File dataFile; //Mendeklarasikan variabel dataFile pada tipe File atau Dokumen
 
 
 void setup() {
@@ -46,7 +43,7 @@ void setup() {
   //connect to WiFi
   Serial.print("Connecting to: "); 
   Serial.println(ssid);
-  //WiFi.begin(ssid);
+  //WiFi.begin(ssid); digunakan saat wifi tanpa password
   WiFi.begin(ssid, pass);
   
   while (WiFi.status() != WL_CONNECTED) {
@@ -82,7 +79,7 @@ void setup() {
   // jika Anda sampai di sini, itu karena kartu diinisialisasi dengan benar
   Serial.println("Inisialisasi kartu."); //Menampilkan kata "Inisialisasi kartu." pada serial monitor laptop
 
-   File dataFile = SD.open("Data Mobil.xls", FILE_WRITE); //Menjadikan variabel dataFile sebagai alat untuk membuat file dan membuka file di SD card 
+  dataFile = SD.open("Data Mobil.xls", FILE_WRITE); //Menjadikan variabel dataFile sebagai alat untuk membuat file dan membuka file di SD card 
   // jika file dibuka dengan benar, tulis datanya
   if (dataFile) { 
       //Mecetak kata-kata pada file yang dibuat di SD card
@@ -91,7 +88,7 @@ void setup() {
       dataFile.print("Arus"); 
       dataFile.print("\t\t"); //Tab 2 kali
       dataFile.print("Daya"); 
-      dataFile.print("\t\t"); //Tab  kali
+      dataFile.print("\t\t"); //Tab 2 kali
       dataFile.print("Temperature"); 
       dataFile.print("\t\t"); //Tab 2 kali
       dataFile.print("Kecepatan"); 
@@ -142,13 +139,13 @@ void loop() {
 
 void SD_Card(){
 
-  File dataFile = SD.open("Data Mobil.xls", FILE_WRITE); //Menjadikan variabel dataFile sebagai alat untuk membuat file dan membuka file di SD card 
+  dataFile = SD.open("Data Mobil.xls", FILE_WRITE); //Menjadikan variabel dataFile sebagai alat untuk membuat file dan membuka file di SD card 
   // jika file dibuka dengan benar, tulis datanya
   if (dataFile) {
-    display.setTextSize(1);
-    display.setTextColor(SSD1306_WHITE);
-    display.setCursor(0,52);
-    display.println("File Terbuka"); 
+      display.setTextSize(1);
+      display.setTextColor(SSD1306_WHITE);
+      display.setCursor(0,52);
+      display.println("File Terbuka"); 
       
       Serial.println("File Data Mobil.xls Berhasil Dibuka."); //Menampilkan diserial kata "File Nilaipot.xls Berhasil Dibuka." di serial monitor laptop
       //Mecetak nilai variabel pada file yang dibuat di SD card
@@ -162,10 +159,12 @@ void SD_Card(){
       dataFile.print("\t\t"); //Tab 2 kali
       dataFile.print(v); 
       dataFile.print("\t\t"); //Tab 2 kali
-      dataFile.println(E);
+      dataFile.print(E);
+      dataFile.println("");
  
       //menutup file setelah menggunakannya
       dataFile.close();
+      delay(1000);
   }
   // jika file tidak dapat dibuka, data tidak akan ditulis.
   else {
