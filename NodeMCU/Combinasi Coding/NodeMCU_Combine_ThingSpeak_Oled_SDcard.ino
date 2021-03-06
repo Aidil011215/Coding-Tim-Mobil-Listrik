@@ -15,7 +15,7 @@
 #define OLED_RESET     -1 // Reset pin # (or -1 if sharing Arduino reset pin)
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
-const int data = A0;
+#define data A0
 //Dekalrasi Variabel
 float V, I, P, T, v, E;
 float a, b, c, x, y, z;
@@ -31,7 +31,7 @@ unsigned long channel =  1317822; //your channel ID number
 const char *apiKey = "YPYIRSVFF8YQRLET"; //your channel write API Key
 
 //Deklarasi untuk pin pada SD Card
-const int CS_PIN = D8; //Medenefisikan variabel CS_PIN pada pin D8 di NodeMCU
+#define CS_PIN D8 //Medenefisikan variabel CS_PIN pada pin D8 di NodeMCU
 File dataFile; //Mendeklarasikan variabel dataFile pada tipe File atau Dokumen
 
 
