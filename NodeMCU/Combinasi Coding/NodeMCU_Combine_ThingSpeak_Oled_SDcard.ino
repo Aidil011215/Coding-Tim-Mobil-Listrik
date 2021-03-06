@@ -27,8 +27,8 @@ const char *pass =  "Password";
 WiFiClient client;
 
 //thingspeak settings
-unsigned long channel =  1317822; //your channel ID number
-const char *apiKey = "YPYIRSVFF8YQRLET"; //your channel write API Key
+unsigned long channel =  ID Channel; //your channel ID number
+const char *apiKey = "Write API Key"; //your channel write API Key
 
 //Deklarasi untuk pin pada SD Card
 #define CS_PIN D8 //Medenefisikan variabel CS_PIN pada pin D8 di NodeMCU
