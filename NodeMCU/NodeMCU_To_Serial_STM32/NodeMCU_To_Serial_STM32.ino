@@ -8,52 +8,55 @@ SimpleTimer timer;
 String myString; // complete message from arduino, which consistors of snesors data
 char rdata; // menerima karakter
  
-int firstVal, secondVal,thirdVal; // sensors 
-// This function sends Arduino's up time every second to Virtual Pin (1).
-// In the app, Widget's reading frequency should be set to PUSH. This means
-// that you define how often to send data to Blynk App.
- 
- 
- 
+int V, I, P, T, v, E; // sensors 
+
 void setup()
 {
   // Memulai komunikasi serial
   Serial.begin(115200);
- 
+  delay(50);
 }
  
 void loop()
 {
-   if (Serial.available() == 0 ) 
-   {
-   }
-   
-  if (Serial.available() > 0 ) 
+  if (Serial.available()) 
   {
     rdata = Serial.read(); 
     myString = myString+ rdata; 
    // Serial.print(rdata);
     if( rdata == '\n')
     {
-   //  Serial.println(myString); 
-  // Serial.println("fahad");
-// new code
-String l = getValue(myString, ',', 0);
-String m = getValue(myString, ',', 1);
-String n = getValue(myString, ',', 2); 
- 
- 
-firstVal = l.toInt();
-secondVal = m.toInt();
-thirdVal = n.toInt();
-
-  myString = "";
-
-Serial.println(firstVal);
-Serial.println(secondVal);
-Serial.println(thirdVal);
-// end new code
-Serial.println("Test");
+         //  Serial.println(myString); 
+        // Serial.println("fahad");
+      // new code
+      String l = getValue(myString, ',', 0);
+      String m = getValue(myString, ',', 1);
+      String n = getValue(myString, ',', 2);
+      String o = getValue(myString, ',', 4);
+      String p = getValue(myString, ',', 5);
+      String q = getValue(myString, ',', 6); 
+       
+       
+      V = l.toInt();
+      I = m.toInt();
+      P = n.toInt();
+      T = o.toInt();
+      v = p.toInt();
+      E = q.toInt();
+      
+        myString = "";
+      Serial.println("-----------------------");
+      Serial.println("Data Mobil Listrik KMHE");
+      Serial.println("-----------------------");
+      Serial.println(V);
+      Serial.println(I);
+      Serial.println(P);
+      Serial.println(T);
+      Serial.println(v);
+      Serial.println(E);
+      Serial.println("-----------------------");
+      // end new code
+      Serial.println();
     }
   }
  
