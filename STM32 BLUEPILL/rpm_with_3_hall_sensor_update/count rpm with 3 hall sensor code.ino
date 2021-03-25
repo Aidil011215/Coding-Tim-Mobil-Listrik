@@ -1,20 +1,20 @@
-int rotation = 0;
+int rotation = 0; //deklarasi nilai rotasi
 
-float rev=0; //Deklarasi nilai variabel rev = 0
+float mag = 0; //Deklarasi untuk pembacaan nilai magnet 
 float rpm; //Deklarasi Variabel
-float oldtime=0; //Deklarasi nilai variabel oldtime = 0      
+float oldtime = 0; //Deklarasi nilai variabel oldtime = 0      
 float time; //Deklarasi Variabel time
 float Speed = 0; //Deklarasi nilai variabel Speed = 0
 float Kilometer = 0;
-float rev1; //fungsi untuk menghitung rev
+float rev; //fungsi untuk menghitung maget
 
 void isr()          //interrupt service routine
 {
-rev++; //Penambahan nilai variabel setiap interupsi
-rev1 = rev/3;
-if(rev1 > 23){
+mag++; //Penambahan nilai variabel setiap interupsi
+rev = mag/3;
+if(rev > 23){
   rotation = rotation +1;
-  rev = 0;
+  mag = 0;
 Serial.print("rotasi");
 Serial.println(rotation);
 
@@ -40,9 +40,10 @@ detachInterrupt(digitalPinToInterrupt(PB13));
 detachInterrupt(digitalPinToInterrupt(PB14));
 
 time = millis() - oldtime; //waktu sekarang dikurang waktu sebelumnya
-rpm = 60000*rotation/time*rev1; //menghitung semua
+rpm = ((rev/23)+rotation)*60000/time; //menghitung semua
 oldtime = millis();    //Menyimpan waktu saat ini
 rotation = 0;
+rev = 0;
 Speed = (rpm*2*3.14*0.3)/60;
 Kilometer = Speed*3,6;
 
