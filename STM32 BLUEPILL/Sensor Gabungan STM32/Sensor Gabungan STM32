@@ -19,7 +19,7 @@ float V = 0;
 
 //Deklarasi Sensor Arus
 int sensitivitas = 66; //tegantung sensor arus yang digunakan, yang ini 30A
-int teganganoffset = 2481; //nilai pembacaan offset saat tidak ada arus yang lewat
+int teganganoffset = 2495; //nilai pembacaan offset saat tidak ada arus yang lewat
 int nilaiadc = 00;
 double tegangan = 00;
 double I = 00;
