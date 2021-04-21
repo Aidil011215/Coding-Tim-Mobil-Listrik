@@ -1,4 +1,4 @@
-int pedal = PA1;
+int pedal = PA2;
 int state = 0;
 
 void setup() {
@@ -10,8 +10,9 @@ void setup() {
 // the loop routine runs over and over again forever
 void loop() {
   // read the input on analog pin 0
-   state = (analogRead(pedal)-770)/3.26;
+   state = (analogRead(pedal)-770)/3.28;
   // print out the value you read
+ if (state>255) state = 255;
   Serial.println(state);
   delay(1000);        // delay in between reads for stability
 }
