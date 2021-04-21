@@ -12,7 +12,7 @@ void loop() {
   // read the input on analog pin 0
    state = (analogRead(pedal)-770)/3.28;
   // print out the value you read
- if (state>255) state = 255;
+ if (state>255) state = 255; // limit the value on the pedal 
   Serial.println(state);
   delay(1000);        // delay in between reads for stability
 }
