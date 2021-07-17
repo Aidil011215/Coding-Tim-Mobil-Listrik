@@ -72,8 +72,8 @@ void Maju(){
    if(H == "101"){ // Step 1 : 101
      analogWrite(Q1H, Speed);    // MENGAKTIFKAN MOSFET 1 SEBAGAI PWM
      digitalWrite(Q1L, LOW);     // MENONAKTIFKAN MOSFET 2 
-     digitalWrite(Q2H, LOW);     // MENGAKTIFKAN MOSFET 3 SEBAGAI GROUND
-     digitalWrite(Q2L, HIGH);    // MENONAKTIFKAN MOSFET 4
+     digitalWrite(Q2H, LOW);     // MENONAKTIFKAN MOSFET 3
+     digitalWrite(Q2L, HIGH);    // MENGAKTIFKAN MOSFET 4 SEBAGAI GROUND
      digitalWrite(Q3H, LOW);     // MENONAKTIFKAN MOSFET 5
      digitalWrite(Q3L, LOW);     // MENONAKTIFKAN MOSFET 6 NC
      Serial.print("Step1 : " + H);
@@ -136,10 +136,10 @@ void Mundur(){
    if(H == "100"){ // Step 1 : 100
      digitalWrite(Q1H, LOW);      // MENONAKTIFKAN MOSFET 1 NC
      digitalWrite(Q1L, LOW);      // MENONAKTIFKAN MOSFET 2 
-     digitalWrite(Q2H, LOW);      // MENGAKTIFKAN MOSFET 3 SEBAGAI PWM
+     digitalWrite(Q2H, LOW);      // MENGAKTIFKAN MOSFET 3 SEBAGAI GROUND
      digitalWrite(Q2L, HIGH);     // MENONAKTIFKAN MOSFET 4
      digitalWrite(Q3H, LOW);      // MENONAKTIFKAN MOSFET 5
-     analogWrite(Q3L, Speed);     // MENGAKTIFKAN MOSFET 6 SEBAGAI GROUND
+     analogWrite(Q3L, Speed);     // MENGAKTIFKAN MOSFET 6 SEBAGAI PWM
      Serial.print("Step1 : " + H);
      delay(100);
    }
@@ -197,20 +197,24 @@ void Mundur(){
 
 void Rusak(){ 
    // KENDALI HALL EFFECT SENSOR RUSAK
-   if(H == "111"){Serial.print("Hall Rusak 1 111  ");delay(100); // Bebas : 111
+   if(H == "111"){ // Bebas : 111
      digitalWrite(Q1H, LOW);      // Mosfet High Side
      digitalWrite(Q1L, HIGH);     // Mosfet Low Side
      digitalWrite(Q2H, LOW);      // Mosfet High Side
      digitalWrite(Q2L, HIGH);     // Mosfet Low Side
      digitalWrite(Q3H, LOW);      // Mosfet High Side
      digitalWrite(Q3L, HIGH);     // Mosfet Low Side
+     Serial.print("Hall Rusak 1 111  ");
+     delay(100);
    }
-   if(H == "000"){Serial.print("Hall Rusak 2  000  ");delay(100); // Bebas : 000
+   if(H == "000"){ // Bebas : 000
      digitalWrite(Q1H, LOW);      // Mosfet High Side
      digitalWrite(Q1L, HIGH);     // Mosfet Low Side
      digitalWrite(Q2H, LOW);      // Mosfet High Side
      digitalWrite(Q2L, HIGH);     // Mosfet Low Side
      digitalWrite(Q3H, LOW);      // Mosfet High Side
      digitalWrite(Q3L, HIGH);     // Mosfet Low Side
+     Serial.print("Hall Rusak 2  000  ");
+     delay(100);
    }
 }
