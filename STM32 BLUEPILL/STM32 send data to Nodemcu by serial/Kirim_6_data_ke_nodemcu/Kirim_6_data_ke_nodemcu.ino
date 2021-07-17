@@ -1,10 +1,19 @@
-#define Pot PB0
-//#define enable PA0
+//Coding untuk mengirim banyak data ke mikrokontroler lain dengan aman
+
+#define Pot1 PB1
+#define Pot2 PB0
+#define Pot3 PA7
+#define Pot4 PA6
+#define Pot5 PA5
+#define Pot6 PA4
+
+unsigned long oldtime = 0;
+unsigned long interval = 100;
 
 float V = 0;
 float I = 0;
 float P = 0;
-float t = 0;
+float T = 0;
 float v = 0;
 float E = 0;
 
@@ -19,32 +28,32 @@ String cdata;
 
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin(115200);
+  Serial.begin(115200); //Serial komunikasi untuk dihubungkan ke laptop/PC dengan baud rate 115200
+  Serial3.begin(115200); //Serial komunikasi HardwareSerial dari Serial3 untuk dihubungkan ke mikrokontroler lain pada baud rate 115200
   delay(100);
-//  digitalWrite(enable, HIGH);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  V = analogRead(Pot)*60/4000;
-  I = V/5;
-  P = I*V;
-  t = V/2;
-  v = 30+I;
-  E = P*4;
-  serialData();
-}
+  V = analogRead(Pot2);
+  I = analogRead(Pot2);
+  P = analogRead(Pot3);
+  T = analogRead(Pot4);
+  v = analogRead(Pot5);
+  E = analogRead(Pot6);
+  
+  sdata1 = V;
+  sdata2 = I;
+  sdata3 = P;
+  sdata4 = T;
+  sdata5 = v;
+  sdata6 = E;
 
-void serialData() {
-   sdata1 = V;
-   sdata2 = I;
-   sdata3 = P;
-   sdata4 = t;
-   sdata5 = v;
-   sdata6 = E;
-
-   cdata = cdata + sdata1 + "," + sdata2 + "," + sdata3 + ","  + sdata4 + "," + sdata5 + "," + sdata6; // comma will be used a delimeter
-   Serial.println(cdata);
-   delay(1000);
+   if((millis() - oldtime) >= interval){
+    cdata = String(sdata1) + "," + String(sdata2) + "," + String(sdata3) + ","  + String(sdata4) + "," + String(sdata5) + "," + String(sdata6); 
+     Serial.println(cdata); //Mengirimkan data ke laptop/PC untuk ditampilkan pada serial monitor
+     Serial3.println(cdata); //Mengirimkan data ke mikrokontroler lain melalui Serial Komunikasi HardwareSerial dari Serial3
+     oldtime = millis();
+   }
    cdata = "";
 }
