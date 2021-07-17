@@ -187,7 +187,6 @@ void serialData() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly
   if((millis() - oldtime) >= interval){
     serialData();
     oldtime = millis();
