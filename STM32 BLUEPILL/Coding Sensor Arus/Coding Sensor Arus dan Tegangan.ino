@@ -6,7 +6,7 @@ double tegangan = 00;
 double nilaiarus = 00;
 
 void setup(){
-Serial.begin(9600); //baud komunikasi serial monitor 9600bps
+Serial.begin(9600); //baud komunikasi serial monitor 9600 bps
 
 }
 
@@ -22,10 +22,10 @@ void loop(){
   Serial.print(nilaiadc);
 
   Serial.print("\t tegangan (mV) = ");
-  Serial.print(tegangan,3); // cetak arus dengan 3 tempat desimal6uuk
+  Serial.print(tegangan,3); // cetak arus dengan 3 tempat desimal di belakang koma
  
   Serial.print("\t Arus = ");
-  Serial.println(nilaiarus,3);// cetak arus dengan 3 tempat desimal
+  Serial.println(nilaiarus,3);// cetak arus dengan 3 tempat desimal di belakang koma
 
   delay(1000);
 }
