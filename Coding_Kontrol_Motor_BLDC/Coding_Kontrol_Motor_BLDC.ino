@@ -6,18 +6,18 @@ const int Q2L = PB7; // MOSFET 4 TYPE MOSFET LOW SIDE  (PHASA V)
 const int Q3H = PB8; // MOSFET 5 TYPE MOSFET HIGH SIDE (PHASA W)
 const int Q3L = PB9; // MOSFET 6 TYPE MOSFET LOW SIDE  (PHASA W)
 
-//DEKLARASI PINOUT HALL SENSOR
+//DEKLARASI PINOUT HALL EFFECT SENSOR
 const int S1 = PB12; 
 const int S2 = PB13;
 const int S3 = PB14;
 
 //DEKLARASI PINOUT PEDAL & PINOUT MAJU MUNDUR
 const int Pd = PB0; // PINUOT PEDAL
-const int St = PA3; // PINOUT MAJU
+const int St = PA3; // PINOUT MAJU MUNDUR
     
 // DEKLARASI VARIABEL STATE
-int NilaiPedal;
 int buttonSt = 0;
+int NilaiPedal;
 int Speed, Forward, Backward;
 int Hall_U, Hall_V, Hall_W; 
 int U, V, W;
@@ -35,7 +35,7 @@ void setup() {
    pinMode(S1, INPUT); 
    pinMode(S2, INPUT);
    pinMode(S3, INPUT);  
-   Serial.begin(9600);
+   Serial.begin(9600); //MENGHUBUNGKAN SERIAL KOMUNKASI KE LAPTOP DENGAN BAUD RATE 9600
    delay(100);
 }
      
